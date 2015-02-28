@@ -3,27 +3,9 @@ require_relative 'course'
 require 'yaml'
 
 class DbApi
-  def self.students
-    YAML.load_file 'university_db.yml'
-  end
-
-  def self.select_by_gender	(gender)
-    @@students ||= self.students
-    @@students.select { |student| student.gender == gender }
-  end
-
-  def	self.select_by_first_name	(first_name)
-    @@students ||= self.students
-    @@students.select { |student| student.first_name =~ first_name }
-  end
-
-  def	self.select_by_last_name	(last_name)
-    @@students ||= self.students
-    @@students.select { |student| student.last_name =~ last_name }
-  end
-
-  def	self.select_by_weight_more_than(pounds)
-    @@students ||= self.students
-    @@students.select { |student| student.pounds > pounds }
+  def self.method_missing (method, *args)
+    @@students ||= YAML.load_file 'university_db.yml'
+    student_attribute = method.to_s.split('where_').last
+    @@students.select { |student| student.send(student_attribute).send("#{args[0]}", args[1]) }
   end
 end
