@@ -1,4 +1,0 @@
-Assignment#2
-------------
-The regular expression for email address is from
-http://www.regular-expressions.info/email.html
