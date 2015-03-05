@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="row col-md-10 col-md-offset-1 clearfix">
+        <h1>Recipes for <span class="text-primary"><%= @input %></span></h1>
+
+        <table class="table table-condensed table-hover">
+          <thead>
+          <tr>
+            <td></td>
+            <td>Title</td>
+            <td>Ingredients</td>
+          </tr>
+          </thead>
+          <tbody>
+            <%= render :partial => "/recipe", :collection => @recipes, :as => :recipe %>
+          </tbody>
+        </table>
+    </div>
+</div>
