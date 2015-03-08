@@ -1,4 +1,3 @@
-
 class Recipe
   include HTTParty
 
@@ -6,10 +5,7 @@ class Recipe
   default_params output: 'json', onlyImages: 1
   format :json
 
-  def self.for(query)
-    get("/", query: {q: query})["results"]
+  def self.for(q)
+    get("/", query: {q: q})["results"]
   end
 end
-
-#puts Recipe.for("chocolate")
-#puts Recipe.for("apple pie")
