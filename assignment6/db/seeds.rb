@@ -20,8 +20,8 @@ Account.create [
 
 TodoList.destroy_all
 TodoList.create [
-                    { list_name: "Vacation to Disney Land", list_due_date: "2015-07-01" },
                     { list_name: "Business trip to New York City", list_due_date: "2015-09-23" },
+                    { list_name: "Vacation to Disney Land", list_due_date: "2015-07-01" },
                 ]
 
 TodoItem.destroy_all

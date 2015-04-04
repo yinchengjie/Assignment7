@@ -18,15 +18,12 @@ puts Account.create(gender: "female", age: 120, first_name: "Sabrina", last_name
 # test gender text
 puts Account.create(gender: "balbla", age: 21, first_name: "Sabrina", last_name: "Richie").errors.full_messages
 
-<<<<<<< HEAD
-
-# Mapping up a User record with an Account record
 account = Account.find_by gender: "male", age: 52, first_name: "Viktor", last_name: "Yurishenko"
 viktor.account = account
 
 # Retrieving TodoList records
-list1 = TodoList.find_by list_name: "Vacation to Disney Land", list_due_date: "2015-07-01"
-list2 = TodoList.find_by list_name: "Business trip to New York City", list_due_date: "2015-09-23"
+list1 = TodoList.find_by list_name: "Business trip to New York City", list_due_date: "2015-09-23"
+list2 = TodoList.find_by list_name: "Vacation to Disney Land", list_due_date: "2015-07-01"
 
 # Retrieving TodoItem records
 item1 = TodoItem.find_by due_date: "2015-04-15", task_title: "Buy tickets", description: "Buy tickets to Disney Land online"
@@ -88,27 +85,36 @@ puts "Error messages:  #{a5.errors.messages} \n\n"
 
 # Demonstrating TodoList records are retrieved in ascending order by default
 puts "Demonstrating TodoList records are retrieved in ascending order by default"
-TodoList.destroy_all
-TodoList.create list_due_date: "2015-12-24", list_name: "Chrismas shopping"
-TodoList.create list_due_date: "2015-11-27", list_name: "Black Friday shopping"
-TodoList.create list_due_date: "2015-02-14", list_name: "Valentine shopping"
 TodoList.all.each do |list|
   puts "List Due Date: #{list.list_due_date}.  List Name: #{list.list_name}."
 end
 
+puts "\n"
+
+# Demonstrating TodoList records are retrieved 'unscoped'
+puts "Demonstrating TodoList records are retrieved 'unscoped'"
+TodoList.unscoped.all.each do |list|
+  puts "List Due Date: #{list.list_due_date}.  List Name: #{list.list_name}."
+end
 
 puts "\n"
 
 # Demonstrating TodoItem records are retrieved in ascending order by default
 puts "Demonstrating TodoItem records are retrieved in ascending order by default"
-TodoItem.destroy_all
-TodoItem.create due_date: "2015-12-24", task_title: "Buy Chrismas presents", description: "Buy Chrismas presents from Amazon.com"
-TodoItem.create due_date: "2015-11-27", task_title: "Buy stuff on sale", description: "Buy stuff on sale from Amazon.com"
-TodoItem.create due_date: "2015-02-14", task_title: "Buy Valentine present", description: "Buy Valentine present from Amazon.com"
 TodoItem.all.each do |item|
   puts "Due Date: #{item.due_date}.  Task Title: #{item.task_title}.  Description: #{item.description}."
 end
-=======
+
+puts "\n"
+
+# Demonstrating TodoItem records are retrieved 'unscoped'
+puts "Demonstrating TodoItem records are retrieved 'unscoped'"
+TodoItem.unscoped.all.each do |item|
+  puts "Due Date: #{item.due_date}.  Task Title: #{item.task_title}.  Description: #{item.description}."
+end
+
+puts "\n"
+
 # test relationship between User and Account
 User.first.account = Account.first
 puts User.first.account.inspect
@@ -119,5 +125,3 @@ puts Tag.first.todo_items.inspect
 
 Tag.second.todo_items << TodoItem.second
 puts Tag.second.todo_items.inspect
->>>>>>> 216cb3307bdc6a3b92067e73471ccfb2be03ff5b
-
