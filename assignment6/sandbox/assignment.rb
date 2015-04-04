@@ -18,6 +18,7 @@ puts Account.create(gender: "female", age: 120, first_name: "Sabrina", last_name
 # test gender text
 puts Account.create(gender: "balbla", age: 21, first_name: "Sabrina", last_name: "Richie").errors.full_messages
 
+<<<<<<< HEAD
 
 # Mapping up a User record with an Account record
 account = Account.find_by gender: "male", age: 52, first_name: "Viktor", last_name: "Yurishenko"
@@ -107,4 +108,16 @@ TodoItem.create due_date: "2015-02-14", task_title: "Buy Valentine present", des
 TodoItem.all.each do |item|
   puts "Due Date: #{item.due_date}.  Task Title: #{item.task_title}.  Description: #{item.description}."
 end
+=======
+# test relationship between User and Account
+User.first.account = Account.first
+puts User.first.account.inspect
+
+# test relationship between TodoItems and Tag
+TodoItem.first.tags << Tag.first
+puts Tag.first.todo_items.inspect
+
+Tag.second.todo_items << TodoItem.second
+puts Tag.second.todo_items.inspect
+>>>>>>> 216cb3307bdc6a3b92067e73471ccfb2be03ff5b
 
