@@ -33,27 +33,30 @@ item4 = TodoItem.find_by due_date: "2015-03-28", task_title: "Buy plane tickets"
 item5 = TodoItem.find_by due_date: "2015-04-04", task_title: "Reserve hotel", description: "Reserve hotel for one adult"
 item6 = TodoItem.find_by due_date: "2015-04-05", task_title: "Buy Broadway show ticket", description: "Buy Broadway show ticket online"
 
-# Mappying TodoItem records to TodoList records
-list1.todo_items << [ item1, item2, item3 ]
-list2.todo_items << [ item4, item5, item6 ]
+# Retrieving Tag records
+tag1 = Tag.find_by tag_name: "vacation"
+tag2 = Tag.find_by  tag_name: "business trip"
+tag3 = Tag.find_by tag_name: "entertainment"
+tag4 = Tag.find_by tag_name: "hotel"
 
-# Mappying TodoList records to the User record
-TodoList.all.each do |list|
-  viktor.todo_lists << list
-end
-
-puts "\n"
+puts "-----------------------------------------------------------------------\n"
 
 # Demonstrating that TodoItem records are mapped directly to the User record
 # Note that in the output the TodoItem records are retrieved in ascending order
 # as defined in default scope.
 puts "Demonstrating that TodoItem records are mapped directly to the User record"
-puts "#{viktor.account.first_name} #{viktor.account.last_name}'s To-do Items"
-viktor.todo_list_items.each do |item|
-  puts "Due Date: #{item.due_date}.  Task Title: #{item.task_title}.  Description: #{item.description}."
-end
 
+list1.todo_items << [ item1, item2, item3 ]
+
+list2.todo_items << [ item4, item5, item6 ]
+
+viktor.todo_lists << [ list1, list2 ]
+
+puts viktor.todo_list_items.inspect
 puts "\n"
+puts viktor.todo_list_items.pluck(:due_date, :task_title, :description)
+
+puts "-----------------------------------------------------------------------\n"
 
 # Demonstrating validations on gender and age
 puts "Demonstrating validations on gender and age"
@@ -82,38 +85,31 @@ puts 'Statement:  a5 = Account.create gender: "N/A", age: 30'
 puts "a5 is valid:  #{a5.valid?}"
 puts "Error messages:  #{a5.errors.messages} \n\n"
 
+puts "-----------------------------------------------------------------------\n"
 
-# Demonstrating TodoList records are retrieved in ascending order by default
-puts "Demonstrating TodoList records are retrieved in ascending order by default"
-TodoList.all.each do |list|
-  puts "List Due Date: #{list.list_due_date}.  List Name: #{list.list_name}."
-end
+# Demonstrating TodoList records are retrieved in ascending order by date by default
+puts "Demonstrating TodoList records are retrieved in ascending order by date by default"
+puts TodoList.pluck(:list_due_date)
 
-puts "\n"
+puts "-----------------------------------------------------------------------\n"
 
 # Demonstrating TodoList records are retrieved 'unscoped'
 puts "Demonstrating TodoList records are retrieved 'unscoped'"
-TodoList.unscoped.all.each do |list|
-  puts "List Due Date: #{list.list_due_date}.  List Name: #{list.list_name}."
-end
+puts TodoList.unscoped.pluck(:list_due_date)
 
-puts "\n"
+puts "-----------------------------------------------------------------------\n"
 
-# Demonstrating TodoItem records are retrieved in ascending order by default
-puts "Demonstrating TodoItem records are retrieved in ascending order by default"
-TodoItem.all.each do |item|
-  puts "Due Date: #{item.due_date}.  Task Title: #{item.task_title}.  Description: #{item.description}."
-end
+# Demonstrating TodoItem records are retrieved in ascending order by date by default
+puts "Demonstrating TodoItem records are retrieved in ascending order by date by default"
+puts TodoItem.pluck(:due_date)
 
-puts "\n"
+puts "-----------------------------------------------------------------------\n"
 
 # Demonstrating TodoItem records are retrieved 'unscoped'
 puts "Demonstrating TodoItem records are retrieved 'unscoped'"
-TodoItem.unscoped.all.each do |item|
-  puts "Due Date: #{item.due_date}.  Task Title: #{item.task_title}.  Description: #{item.description}."
-end
+puts TodoItem.unscoped.pluck(:due_date)
 
-puts "\n"
+puts "-----------------------------------------------------------------------\n"
 
 # test relationship between User and Account
 User.first.account = Account.first
@@ -125,3 +121,54 @@ puts Tag.first.todo_items.inspect
 
 Tag.second.todo_items << TodoItem.second
 puts Tag.second.todo_items.inspect
+
+puts "-----------------------------------------------------------------------\n"
+
+# Demonstrating one-to-one relationship between User and Account
+puts "Demonstrating one-to-one relationship between User and Account"
+account = Account.find_by gender: "male", age: 52, first_name: "Viktor", last_name: "Yurishenko"
+viktor.account = account
+puts viktor.inspect
+puts viktor.account.inspect
+
+puts "-----------------------------------------------------------------------\n"
+
+# Demonstrating one-to-many relationship between User and TodoList
+puts "Demonstrating one-to-many relationship between User and TodoList"
+puts viktor.inspect
+puts viktor.todo_lists.inspect
+puts "\n"
+puts viktor.todo_lists.pluck(:list_due_date, :list_name)
+
+puts "-----------------------------------------------------------------------\n"
+
+# Demonstrating one-to-many relationship between TodoList and TodoItem
+puts "Demonstrating one-to-many relationship between TodoList and TodoItem"
+puts list2.inspect
+puts list2.todo_items.inspect
+puts "\n"
+puts list2.todo_items.pluck(:due_date, :task_title, :description)
+puts "-----------------------------------------------------------------------\n"
+
+
+# Demonstrating many-to-many relatioship between TodoItem and Tag
+puts "Demonstrating many-to-many relatioship between TodoItem and Tag"
+item4.tags.clear
+item4.tags << [ tag1, tag2 ]
+
+tag1.todo_items.clear
+tag1.todo_items << [ item1, item2 ]
+
+puts item4.inspect
+puts "\n"
+puts item4.tags.inspect
+puts "\n"
+puts "\n"
+
+
+puts tag1.inspect
+puts "\n"
+puts tag1.todo_items.inspect
+puts "\n"
+
+puts "-----------------------------------------------------------------------\n"
