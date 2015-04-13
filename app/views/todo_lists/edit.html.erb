@@ -1,0 +1,6 @@
+<h1>Editing Todo List</h1>
+
+<%= render 'form' %>
+<p/>
+<%= link_to 'Delete This List', @todo_list, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', todo_lists_path %>
