@@ -5,7 +5,9 @@
 
 
 <div id="todo_items">
-  <%= render @todo_list.todo_items %>
+  <%= render @todo_items %>
+
+  <%= will_paginate @todo_items %>
 </div>
 
 <p/>

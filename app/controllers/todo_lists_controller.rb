@@ -65,6 +65,8 @@ class TodoListsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_todo_list
       @todo_list = current_user.todo_lists.find(params[:id])
+      @todo_items = @todo_list.todo_items.paginate(page: params[:page], per_page: 5)
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
