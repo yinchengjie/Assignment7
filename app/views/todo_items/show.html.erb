@@ -1,10 +1,10 @@
 <h1><%= @todo_list.todo_items.find(params[:id]).task_title %></h1>
-<div class="todoItem">
+<div class="todoItem_detail">
   <%= content_tag(:span, "Due on: #{@todo_list.todo_items.find(params[:id]).due_date}") %>
   <br />
   <%= content_tag(:span, "Status: #{@todo_list.todo_items.find(params[:id]).done?}") %>
   <br />
-  <%= content_tag(:div, "#{@todo_list.todo_items.find(params[:id]).description}") %>
+  <%= content_tag(:div, "#{@todo_list.todo_items.find(params[:id]).description}", class: "descrip") %>
 </div>
 <p/>
 

@@ -13,3 +13,66 @@
  *= require_tree .
  *= require_self
  */
+body {
+    background-color: #f0e68c;
+    margin: 30px;
+}
+
+
+.todoList, .todo_item_name {
+    font-size: 1.4em;
+    margin: 15px 10px;
+}
+
+a {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+
+a:hover {
+    background: black;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.due_date, .td_due_date {
+    background: greenyellow;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 1.7em;
+}
+
+#notice {
+    margin-bottom: 13px;
+    font-weight: bolder;
+    color: #fff;
+    background-color: skyblue;
+    width: 250px;
+    border-radius: 5px;
+}
+
+.todo_item_title {
+    border: solid 2px;
+    padding: 5px;
+    background: cyan;
+}
+
+.todoItem {
+    margin: 26px 10px;
+}
+
+.todoItem_detail {
+    line-height: 1.5em;
+    font-size: 1.8em;
+}
+
+.todoItem_detail > .descrip {
+    background-color: burlywood;
+    display: inline-block;
+    padding: 50px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+

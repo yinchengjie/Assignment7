@@ -1,8 +1,7 @@
 <div class="todoItem">
-  <div>
-      <span class="todo_item_title">
-        <%= "#{todo_item.due_date} " %>
-        <%= link_to "#{todo_item.task_title}", todo_list_todo_item_path(@todo_list, todo_item) %>
-     </span>
-  </div>
+  <span class="todo_item_title">
+    <%= "#{todo_item.due_date} " %>
+  </span>
+  <%= link_to "#{todo_item.task_title}", todo_list_todo_item_path(@todo_list, todo_item) %>
+
 </div>
