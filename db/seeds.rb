@@ -23,6 +23,14 @@ TodoList.create [
                     { list_name: "Business trip to New York City", list_due_date: "2015-09-23" },
                     { list_name: "Vacation to Disney Land", list_due_date: "2015-07-01" },
                 ]
+matt  = User.find_by(login: "Matt")
+
+200.times do |index|
+  todolist = TodoList.create(list_name: "Name#{index}", list_due_date: "2020-01-01")
+  matt.todo_lists << todolist
+end
+
+
 
 TodoItem.destroy_all
 TodoItem.create [
