@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_filter :ensure_login, :only => [:new, :create]
+
   def new
   end
 

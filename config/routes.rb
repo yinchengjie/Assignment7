@@ -7,9 +7,7 @@ Rails.application.routes.draw do
 
   resource :sessions, only: [:create, :destroy, :new]
 
-  controller :sessions do
-    get 'login' => :new, as: 'login'
-    post 'login' => :create
-    delete 'logout' => :destroy, as: 'logout'
-  end
+  get '/login' => "sessions#new", as: "login"
+  delete '/logout' => "sessions#destroy", as: "logout"
+
 end
