@@ -3,6 +3,8 @@
   <%= content_tag(:span, "Due on: #{@todo_list.todo_items.find(params[:id]).due_date}") %>
   <br />
   <%= content_tag(:span, "Status: #{@todo_list.todo_items.find(params[:id]).done?}") %>
+  <br />
+  <%= content_tag(:div, "#{@todo_list.todo_items.find(params[:id]).description}") %>
 </div>
 <p/>
 
