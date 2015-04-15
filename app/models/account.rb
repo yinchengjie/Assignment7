@@ -1,6 +1,8 @@
 class Account < ActiveRecord::Base
   belongs_to :user
 
+  validates :first_name, :last_name, presence: true
+
   validates :gender, inclusion: { in: %w(male female N/A),
                                   message: "must be either 'male', 'female', or 'N/A'" }
 
