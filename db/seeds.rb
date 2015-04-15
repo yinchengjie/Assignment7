@@ -30,7 +30,7 @@ account_tim = Account.find_by(first_name: "Tim")
 matt.account = account_matt
 tim.account = account_tim
 
-10.times do |index|
+20.times do |index|
   todolist = TodoList.create(list_name: "Name#{index}", list_due_date: "2020-01-01")
   matt.todo_lists << todolist
 end
