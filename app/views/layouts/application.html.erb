@@ -9,8 +9,9 @@
 <body>
 
 <% if logged_in? %>
-    <div style="float: right;">
-      You are logged in as <%= current_user.login %>
+    <div class="navbar">
+      <%= link_to 'My Account', account_path %> |
+      You are logged in as <%= current_user.login %> |
       <%= link_to 'Logout', logout_path, data: {method: :delete} %>
     </div>
 <% end %>

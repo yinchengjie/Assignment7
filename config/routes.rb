@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :todo_items, only: [:create, :new, :destroy, :edit, :update, :show]
   end
 
+  resource :account, only: [:show, :edit, :update]
+
   resource :sessions, only: [:create, :destroy, :new]
 
   get '/login' => "sessions#new", as: "login"

@@ -1,0 +1,12 @@
+<h1>Account</h1>
+<div class="todoItem_detail">
+  <%= content_tag(:span, "First Name: #{@account.first_name}") %>
+  <br />
+  <%= content_tag(:span, "Last Name: #{@account.last_name}") %>
+  <br />
+  <%= content_tag(:span, "Gender: #{@account.gender}") %>
+  <br />
+  <%= content_tag(:span, "Age: #{@account.age}") %>
+</div>
+
+<%= link_to 'Edit', edit_account_path %>

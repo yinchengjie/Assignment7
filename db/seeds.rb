@@ -24,8 +24,13 @@ TodoList.create [
                     { list_name: "Vacation to Disney Land", list_due_date: "2015-07-01" },
                 ]
 matt  = User.find_by(login: "Matt")
+tim = User.find_by(login: "Tim")
+account_matt = Account.find_by(first_name: "Matt")
+account_tim = Account.find_by(first_name: "Tim")
+matt.account = account_matt
+tim.account = account_tim
 
-200.times do |index|
+10.times do |index|
   todolist = TodoList.create(list_name: "Name#{index}", list_due_date: "2020-01-01")
   matt.todo_lists << todolist
 end
