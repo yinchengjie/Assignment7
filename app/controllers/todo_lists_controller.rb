@@ -61,6 +61,27 @@ class TodoListsController < ApplicationController
     end
   end
 
+  def get_color (todo_list)
+    todo_item_list = todo_list.todo_items
+
+    if !todo_item_list.empty?
+      if todo_item_list.find_by(:done => [false, nil]).nil?
+        'greenyellow'
+      else
+        'red'
+      end
+    else
+      'greenyellow'
+    end
+  end
+
+  def get_item_color (todo_item)
+    todo_item.done? == 'Done' ? 'lime' : 'red'
+
+  end
+
+  helper_method :get_color, :get_item_color
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo_list

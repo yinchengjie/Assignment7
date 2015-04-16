@@ -4,12 +4,12 @@
 
 <% @todo_lists.each do |todo_list| %>
     <div class="todoList">
-      <span class="due_date"><%= todo_list.list_due_date %></span>
+      <span class="due_date" style="background:<%= get_color todo_list %>"><%= todo_list.list_due_date %></span>
       <%= link_to "#{todo_list.list_name}", todo_list %>
     </div>
 <% end %>
 
-<%= will_paginate @todo_list  %>
+<%= will_paginate @todo_list %>
 
 <br>
 
