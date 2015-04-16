@@ -1,5 +1,5 @@
 <div class="todoItem">
-  <span class="todo_item_title">
+  <span class="todo_item_title" style="background:<%=get_item_color todo_item%>">
     <%= "#{todo_item.due_date} " %>
   </span>
   <%= link_to "#{todo_item.task_title}", todo_list_todo_item_path(@todo_list, todo_item) %>

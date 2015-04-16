@@ -36,8 +36,6 @@ class TodoItemsController < ApplicationController
     redirect_to @todo_list, notice: "Todo item deleted!"
   end
 
-
-
   private
   def set_todo_list
     @todo_list = TodoList.find(params[:todo_list_id])
