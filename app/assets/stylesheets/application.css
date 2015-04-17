@@ -19,7 +19,7 @@ body {
 }
 
 
-.todoList, .todo_item_name {
+.todoList, .todo_item_name, .account {
     font-size: 1.4em;
     margin: 30px 10px;
 }
