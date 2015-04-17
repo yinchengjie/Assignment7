@@ -26,7 +26,7 @@ class TodoItemsController < ApplicationController
     if @todo_item.update(todo_item_params)
       redirect_to @todo_list, notice: "Todo item was successfully updated!"
     else
-      render :edit
+      redirect_to @todo_list, alert: "Unable to update todo item!"
     end
   end
 
