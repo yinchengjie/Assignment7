@@ -4,7 +4,7 @@
 
 <% @todo_lists.each do |todo_list| %>
     <div class="todoList">
-      <%= due_date(todo_list) %>
+      <span class="due_date" style="background:<%= get_color todo_list %>"><%= todo_list.list_due_date %></span>
       <%= link_to "#{todo_list.list_name}", todo_list %>
     </div>
 <% end %>
