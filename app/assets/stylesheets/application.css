@@ -52,6 +52,15 @@ a:hover {
     border-radius: 5px;
 }
 
+#alert {
+    margin-bottom: 13px;
+    font-weight: bolder;
+    color: #fff;
+    background-color: red;
+    width: 250px;
+    border-radius: 5px;
+}
+
 .todo_item_title {
     border: solid 2px;
     padding: 5px;
