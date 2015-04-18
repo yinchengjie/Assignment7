@@ -8,13 +8,14 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
+  username:
+  password:
 
 development:
   <<: *default
   encoding: utf8
   database: assignment7_development
-  username:
-  password:
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
