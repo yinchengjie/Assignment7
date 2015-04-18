@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150412164305) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "accounts", force: :cascade do |t|
     t.string   "gender"
     t.integer  "age"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150412164305) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id"
+  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "tag_name"
@@ -36,8 +39,8 @@ ActiveRecord::Schema.define(version: 20150412164305) do
     t.integer "todo_item_id"
   end
 
-  add_index "tags_todo_items", ["tag_id"], name: "index_tags_todo_items_on_tag_id"
-  add_index "tags_todo_items", ["todo_item_id"], name: "index_tags_todo_items_on_todo_item_id"
+  add_index "tags_todo_items", ["tag_id"], name: "index_tags_todo_items_on_tag_id", using: :btree
+  add_index "tags_todo_items", ["todo_item_id"], name: "index_tags_todo_items_on_todo_item_id", using: :btree
 
   create_table "todo_items", force: :cascade do |t|
     t.date     "due_date"
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 20150412164305) do
     t.text     "description"
   end
 
-  add_index "todo_items", ["todo_list_id"], name: "index_todo_items_on_todo_list_id"
+  add_index "todo_items", ["todo_list_id"], name: "index_todo_items_on_todo_list_id", using: :btree
 
   create_table "todo_lists", force: :cascade do |t|
     t.string   "list_name"
@@ -59,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150412164305) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "todo_lists", ["user_id"], name: "index_todo_lists_on_user_id"
+  add_index "todo_lists", ["user_id"], name: "index_todo_lists_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
